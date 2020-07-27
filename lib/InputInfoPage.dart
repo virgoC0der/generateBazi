@@ -33,50 +33,51 @@ class _inputInfoPageState extends State<InputInfoPage> {
   }
 
   _pickDate() {
-    DatePicker.showDatePicker(
-        context,
-      pickerTheme: DateTimePickerTheme(
-        confirm: Text('确定', style: TextStyle(color: Colors.blue),),
-        cancel: Text('取消', style: TextStyle(color: Colors.grey),)
-      ),
-      initialDateTime: _date,
-      dateFormat: 'yyyy-MM-dd',
-      pickerMode: DateTimePickerMode.date,
-      locale: DateTimePickerLocale.zh_cn,
-      onConfirm: (date, List<int> list) {
-          setState(() {
-            _date = date;
-            print(_date);
-          });
-      },
-      onCancel: () {
-          print('date cancel');
-      }
-    );
+    DatePicker.showDatePicker(context,
+        pickerTheme: DateTimePickerTheme(
+            confirm: Text(
+              '确定',
+              style: TextStyle(color: Colors.blue),
+            ),
+            cancel: Text(
+              '取消',
+              style: TextStyle(color: Colors.grey),
+            )),
+        initialDateTime: _date,
+        dateFormat: 'yyyy-MM-dd',
+        pickerMode: DateTimePickerMode.date,
+        locale: DateTimePickerLocale.zh_cn, onConfirm: (date, List<int> list) {
+      setState(() {
+        _date = date;
+        print(_date);
+      });
+    }, onCancel: () {
+      print('date cancel');
+    });
   }
 
   _pickTime() {
-    DatePicker.showDatePicker(
-        context,
+    DatePicker.showDatePicker(context,
         pickerTheme: DateTimePickerTheme(
-            confirm: Text('确定', style: TextStyle(color: Colors.blue),),
-            cancel: Text('取消', style: TextStyle(color: Colors.grey),)
-        ),
+            confirm: Text(
+              '确定',
+              style: TextStyle(color: Colors.blue),
+            ),
+            cancel: Text(
+              '取消',
+              style: TextStyle(color: Colors.grey),
+            )),
         pickerMode: DateTimePickerMode.time,
-      initialDateTime: _time,
-      locale: DateTimePickerLocale.zh_cn,
-      dateFormat: 'HH:mm分',
-
-      onCancel: () {
-          print('time cancel');
-      },
-      onConfirm: (time, List<int> list) {
-          setState(() {
-            _time = time;
-            print(_time);
-          });
-      }
-    );
+        initialDateTime: _time,
+        locale: DateTimePickerLocale.zh_cn,
+        dateFormat: 'HH:mm分', onCancel: () {
+      print('time cancel');
+    }, onConfirm: (time, List<int> list) {
+      setState(() {
+        _time = time;
+        print(_time);
+      });
+    });
   }
 
   getResult() {
@@ -186,25 +187,25 @@ class _inputInfoPageState extends State<InputInfoPage> {
                         })
                   ],
                 ),
-                SizedBox(height: 15.0,),
+                SizedBox(
+                  height: 15.0,
+                ),
                 Row(
                   children: <Widget>[
                     Text(
                       '请选择日期',
-                      style: TextStyle(
-                          fontSize: 18.0
-                      ),
+                      style: TextStyle(fontSize: 18.0),
                     ),
-                    SizedBox(width: 20.0,),
+                    SizedBox(
+                      width: 20.0,
+                    ),
                     InkWell(
                       onTap: _pickDate,
                       child: Row(
                         children: <Widget>[
                           Text(
                             "${_date.year}-${_date.month}-${_date.day}",
-                            style: TextStyle(
-                                fontSize: 18.0
-                            ),
+                            style: TextStyle(fontSize: 18.0),
                           ),
                           Icon(Icons.arrow_drop_down)
                         ],
@@ -212,25 +213,25 @@ class _inputInfoPageState extends State<InputInfoPage> {
                     ),
                   ],
                 ),
-                SizedBox(height: 15.0,),
+                SizedBox(
+                  height: 15.0,
+                ),
                 Row(
                   children: <Widget>[
                     Text(
                       '请选择时间',
-                      style: TextStyle(
-                          fontSize: 18.0
-                      ),
+                      style: TextStyle(fontSize: 18.0),
                     ),
-                    SizedBox(width: 20.0,),
+                    SizedBox(
+                      width: 20.0,
+                    ),
                     InkWell(
                       onTap: _pickTime,
                       child: Row(
                         children: <Widget>[
                           Text(
                             "${_time.hour}:${_time.minute}",
-                            style: TextStyle(
-                                fontSize: 18.0
-                            ),
+                            style: TextStyle(fontSize: 18.0),
                           ),
                           Icon(Icons.arrow_drop_down)
                         ],
@@ -238,7 +239,9 @@ class _inputInfoPageState extends State<InputInfoPage> {
                     ),
                   ],
                 ),
-                SizedBox(height: 15.0,),
+                SizedBox(
+                  height: 15.0,
+                ),
                 Container(
 //                  margin: EdgeInsets.only(left: 20, right: 20),
                   height: 40,

@@ -250,61 +250,6 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
 
-//    Widget thirdPartyLogin = new Container(
-//        margin: EdgeInsets.only(left: 20, right: 20),
-//        child: new Column(
-//          children: <Widget>[
-//            new Row(
-//              mainAxisSize: MainAxisSize.min,
-//              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//              children: <Widget>[
-//                Container(
-//                  width: 80,
-//                  height: 1.0,
-//                  color: Colors.grey,
-//                ),
-//                Text('第三方登陆'),
-//                Container(
-//                  width: 80,
-//                  height: 1.0,
-//                  color: Colors.grey,
-//                ),
-//                new SizedBox(
-//                  height: 18,
-//                ),
-//              ],
-//            ),
-//            new Row(
-//              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//              children: <Widget>[
-//                IconButton(
-//                  color: Colors.green[200],
-//                  icon: Icon(FontAwesomeIcons.weixin),
-//                  iconSize: 40.0,
-//                  onPressed: () {
-//                    //TODO: add Wechat Auth
-//                  },
-//                ),
-//                IconButton(
-//                  color: Colors.blue,
-//                  icon: Icon(FontAwesomeIcons.qq),
-//                  iconSize: 40.0,
-//                  onPressed: () {
-//                    //TODO: add QQ Auth
-//                  },
-//                ),
-//                IconButton(
-//                  color: Colors.black,
-//                  icon: Icon(FontAwesomeIcons.apple),
-//                  iconSize: 40.0,
-//                  onPressed: () {
-//                    //TODO: add Apple Auth
-//                  },
-//                )
-//              ],
-//            ),
-//          ],
-//        ));
 
     Widget bottomArea = new Container(
         margin: EdgeInsets.only(right: 20, left: 30),
@@ -337,7 +282,6 @@ class _LoginPageState extends State<LoginPage> {
           ],
         ));
 
-    // TODO: implement build
     return Scaffold(
       backgroundColor: Colors.white,
       body: new GestureDetector(
