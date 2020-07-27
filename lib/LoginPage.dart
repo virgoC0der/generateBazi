@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'SignupPage.dart';
+import 'InputInfoPage.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -80,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     ScreenUtil instance = ScreenUtil(width: 750, height: 1334)..init(context);
-    print(ScreenUtil().scaleHeight);
+//    print(ScreenUtil().scaleHeight);
 
     Widget title = new Container(
       padding: EdgeInsets.fromLTRB(15.0, 110.0, 0.0, 0.0),
@@ -100,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
           children: <Widget>[
             new TextFormField(
               onTap: () {
-                _usernameColor = Colors.green;
+                _usernameColor = Colors.blue;
                 _passwordColor = Colors.grey;
               },
               controller: _usernameController,
@@ -108,7 +109,7 @@ class _LoginPageState extends State<LoginPage> {
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.green),
+                  borderSide: BorderSide(color: Colors.blue),
                 ),
                 labelText: '用户名',
                 hintText: '请输入手机号',
@@ -128,13 +129,13 @@ class _LoginPageState extends State<LoginPage> {
             ),
             new TextFormField(
               onTap: () {
-                _passwordColor = Colors.green;
+                _passwordColor = Colors.blue;
                 _usernameColor = Colors.grey;
               },
               focusNode: _focusNodePassword,
               decoration: InputDecoration(
                 focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.green),
+                  borderSide: BorderSide(color: Colors.blue),
                 ),
                 labelText: '密码',
                 hintText: '请输入密码',
@@ -172,7 +173,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: Text(
                   '忘记密码',
                   style: TextStyle(
-                      color: Colors.green,
+                      color: Colors.blue,
                       fontWeight: FontWeight.bold,
                       decoration: TextDecoration.underline),
                 ),
@@ -188,8 +189,8 @@ class _LoginPageState extends State<LoginPage> {
       height: 40,
       child: new Material(
           borderRadius: BorderRadius.circular(20.0),
-          shadowColor: Colors.greenAccent,
-          color: Colors.green,
+          shadowColor: Colors.blueAccent,
+          color: Colors.blue,
           elevation: 7.0,
           child: GestureDetector(
             onTap: () {
@@ -199,6 +200,8 @@ class _LoginPageState extends State<LoginPage> {
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
               }
+              Navigator.of(context).push(new MaterialPageRoute(
+                  builder: (BuildContext context) => InputInfoPage()));
             },
             child: Center(
               child: Text(
@@ -322,7 +325,7 @@ class _LoginPageState extends State<LoginPage> {
               child: Text(
                 '注册',
                 style: TextStyle(
-                  color: Colors.green,
+                  color: Colors.blue,
                   fontWeight: FontWeight.bold,
                   decoration: TextDecoration.underline,
                 ),

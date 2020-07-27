@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:bagua/LoginPage.dart';
+import 'InputInfoPage.dart';
 
 void main() => runApp(MyApp());
 
@@ -9,6 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: '八卦排盘',
+//      home: InputInfoPage(),
       home: LoginPage(),
     );
   }
