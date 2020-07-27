@@ -184,36 +184,36 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
 
-    Widget loginArea = new Container(
-      margin: EdgeInsets.only(left: 20, right: 20),
-      height: 40,
-      child: new Material(
+    Widget loginArea = new GestureDetector(
+      onTap: () {
+        _focusNodeUsername.unfocus();
+        _focusNodePassword.unfocus();
+
+        if (_formKey.currentState.validate()) {
+          _formKey.currentState.save();
+        }
+      },
+      child: new Container(
+        margin: EdgeInsets.only(left: 20, right: 20),
+        height: 40,
+        child: new Material(
           borderRadius: BorderRadius.circular(20.0),
           shadowColor: Colors.blueAccent,
           color: Colors.blue,
           elevation: 7.0,
-          child: GestureDetector(
-            onTap: () {
-              _focusNodeUsername.unfocus();
-              _focusNodePassword.unfocus();
-
-              if (_formKey.currentState.validate()) {
-                _formKey.currentState.save();
-              }
-              Navigator.of(context).push(new MaterialPageRoute(
-                  builder: (BuildContext context) => InputInfoPage()));
-            },
-            child: Center(
-              child: Text(
-                '登陆',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
+          child: Center(
+            child: Text(
+              '登陆',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
               ),
             ),
-          )),
+          ),
+        ),
+      ),
     );
+
 
     Widget wechatLogin = new Container(
       margin: EdgeInsets.only(left: 20, right: 20),

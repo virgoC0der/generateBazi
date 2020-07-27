@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_cupertino_date_picker/flutter_cupertino_date_picker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'ResultPage.dart';
+import 'package:dio/dio.dart';
 
 class InputInfoPage extends StatefulWidget {
   @override
@@ -20,7 +21,22 @@ class _inputInfoPageState extends State<InputInfoPage> {
   String _name;
   String _gender;
   int _isLunar;
+  Response response;
   var _nameColor;
+  var url = 'https://way.jd.com/jisuapi/baziPaipan';
+  var params = {
+    'name' : '',
+    'city' : '',
+    'year' : '',
+    'month' : '',
+    'day' : '',
+    'hour' : '',
+    'minute' : '',
+    'sex' : '',
+    'islunar' : '',
+    'istaiyang' : '',
+    'appkey' : '0d015ee8df7458ae4bf2fb9b75becae4'
+  };
 
   @override
   void initState() {
@@ -49,6 +65,9 @@ class _inputInfoPageState extends State<InputInfoPage> {
         locale: DateTimePickerLocale.zh_cn, onConfirm: (date, List<int> list) {
       setState(() {
         _date = date;
+        params['year'] = _date.year.toString();
+        params['month'] = _date.month.toString();
+        params['day'] = _date.day.toString();
         print(_date);
       });
     }, onCancel: () {
@@ -75,13 +94,18 @@ class _inputInfoPageState extends State<InputInfoPage> {
     }, onConfirm: (time, List<int> list) {
       setState(() {
         _time = time;
+        params['hour'] = _time.hour.toString();
+        params['minute'] = _time.minute.toString();
         print(_time);
       });
     });
   }
 
-  getResult() {
+  getResult() async {
     //TODO: Update info and return result.
+    Dio dio = new Dio();
+    response = await dio.get(url, queryParameters: params);
+    print(response.data);
   }
 
   @override
@@ -117,6 +141,7 @@ class _inputInfoPageState extends State<InputInfoPage> {
                   ),
                   onChanged: (String value) {
                     _name = value;
+                    params['name'] = _name;
                     print(_name);
                   },
                 ),
@@ -147,16 +172,17 @@ class _inputInfoPageState extends State<InputInfoPage> {
                           items: [
                             DropdownMenuItem(
                               child: Text('男'),
-                              value: 'male',
+                              value: '1',
                             ),
                             DropdownMenuItem(
                               child: Text('女'),
-                              value: 'female',
+                              value: '0',
                             )
                           ],
                           onChanged: (value) {
                             setState(() {
                               _gender = value;
+                              params['sex'] = value;
                               print(_gender);
                             });
                           }),
@@ -171,17 +197,18 @@ class _inputInfoPageState extends State<InputInfoPage> {
 //                        padding: EdgeInsets.all(20),
                         groupValue: _isLunar,
                         children: {
-                          1: Padding(
+                          0: Padding(
                             padding: EdgeInsets.only(left: 60.0, right: 60.0),
                             child: Text('阳历'),
                           ),
-                          2: Text('阴历')
+                          1: Text('阴历')
                         },
                         onValueChanged: (value) {
                           _focusNodeName.unfocus();
                           setState(() {
                             _nameColor = Colors.grey;
                             _isLunar = value;
+                            params['islunar'] = _isLunar.toString();
                             print(_isLunar);
                           });
                         })
@@ -245,28 +272,27 @@ class _inputInfoPageState extends State<InputInfoPage> {
                 Container(
 //                  margin: EdgeInsets.only(left: 20, right: 20),
                   height: 40,
-                  child: new Material(
+                  child: new GestureDetector(
+                    onTap: () {
+                      _focusNodeName.unfocus();
+                      Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => ResultPage()));
+                    },
+                    child: new Material(
                       borderRadius: BorderRadius.circular(20.0),
                       shadowColor: Colors.blueAccent,
                       color: Colors.blue,
                       elevation: 7.0,
-                      child: GestureDetector(
-                        onTap: () {
-                          _focusNodeName.unfocus();
-
-                          Navigator.of(context).push(new MaterialPageRoute(
-                              builder: (BuildContext context) => ResultPage()));
-                        },
-                        child: Center(
-                          child: Text(
-                            '八字排盘',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
+                      child: Center(
+                        child: Text(
+                          '八字排盘',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                      )),
+                      ),
+                    ),
+                  ),
                 )
               ],
             ),
