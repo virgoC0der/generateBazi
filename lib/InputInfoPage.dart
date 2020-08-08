@@ -16,25 +16,24 @@ class _inputInfoPageState extends State<InputInfoPage> {
 
   TextEditingController _nameController = new TextEditingController();
 
-  DateTime _date = DateTime.now();
-  DateTime _time = DateTime.now();
+  static DateTime _date = DateTime.now();
+  static DateTime _time = DateTime.now();
   String _name;
   String _gender;
   int _isLunar;
   Response response;
   var _nameColor;
-  var url = 'https://way.jd.com/jisuapi/baziPaipan';
   var params = {
     'name' : '',
-    'city' : '',
-    'year' : '',
-    'month' : '',
-    'day' : '',
-    'hour' : '',
-    'minute' : '',
-    'sex' : '',
-    'islunar' : '',
-    'istaiyang' : '',
+    'city' : '北京',
+    'year' : _date.year.toString(),
+    'month' : _date.month.toString(),
+    'day' : _date.day.toString(),
+    'hour' : _time.hour.toString(),
+    'minute' : _time.minute.toString(),
+    'sex' : '1',
+    'islunar' : '0',
+    'istaiyang' : '0',
     'appkey' : '0d015ee8df7458ae4bf2fb9b75becae4'
   };
 
@@ -43,7 +42,7 @@ class _inputInfoPageState extends State<InputInfoPage> {
     // TODO: implement initState
     _nameColor = Colors.grey;
     _name = '';
-    _gender = 'male';
+    _gender = '1';
     _isLunar = 1;
     super.initState();
   }
@@ -99,13 +98,6 @@ class _inputInfoPageState extends State<InputInfoPage> {
         print(_time);
       });
     });
-  }
-
-  getResult() async {
-    //TODO: Update info and return result.
-    Dio dio = new Dio();
-    response = await dio.get(url, queryParameters: params);
-    print(response.data);
   }
 
   @override
@@ -176,7 +168,7 @@ class _inputInfoPageState extends State<InputInfoPage> {
                             ),
                             DropdownMenuItem(
                               child: Text('女'),
-                              value: '0',
+                              value: '2',
                             )
                           ],
                           onChanged: (value) {
@@ -275,7 +267,7 @@ class _inputInfoPageState extends State<InputInfoPage> {
                   child: new GestureDetector(
                     onTap: () {
                       _focusNodeName.unfocus();
-                      Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => ResultPage()));
+                      Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => ResultPage(params)));
                     },
                     child: new Material(
                       borderRadius: BorderRadius.circular(20.0),

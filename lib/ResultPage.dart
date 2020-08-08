@@ -1,26 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:dio/dio.dart';
 
-class ResultPage extends StatefulWidget {
-  @override
-  _resultPageState createState() => _resultPageState();
-}
+class ResultPage extends StatelessWidget{
+  final json;
+  var data;
+  var response;
+  final url = 'https://way.jd.com/jisuapi/baziPaipan';
 
-class _resultPageState extends State<ResultPage> {
-  getResult() {
-
+  Future<Response> getResult(params) async {
+    Dio dio = new Dio();
+    response = await dio.get(url, queryParameters: params);
+    print(response);
+    return response;
   }
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
+  ResultPage(this.json) {
+    data = json;
+    final res = getResult(data);
   }
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
-  }
+    return Scaffold(
+      body: new Material(
 
+        child: Text(response),
+      )
+    );
+  }
 }
 
