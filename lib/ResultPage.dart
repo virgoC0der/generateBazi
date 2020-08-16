@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 
-class ResultPage extends StatefulWidget{
+class ResultPage extends StatefulWidget {
   final data;
+
   const ResultPage(this.data);
 
   @override
@@ -13,13 +14,14 @@ class _ResultPageState extends State<ResultPage> {
   var data;
   var jsdata;
   final url = 'https://way.jd.com/jisuapi/baziPaipan';
+  var bazi;
 
   getResult(params) async {
     Dio dio = new Dio();
     Response response = await dio.get(url, queryParameters: params);
-    try{
+    try {
       print(response.data["result"]);
-    } catch(exception) {
+    } catch (exception) {
       print("fault");
     }
 
@@ -30,7 +32,7 @@ class _ResultPageState extends State<ResultPage> {
     var rawjson = await getResult(params);
     setState(() {
       jsdata = rawjson["result"]["result"];
-
+      bazi = jsdata["bazi"][0];
     });
   }
 
@@ -44,12 +46,7 @@ class _ResultPageState extends State<ResultPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: new Material(
-          child: Text(jsdata.toString()),
-        )
-    );
+      child: Text(bazi),
+    ));
   }
-
 }
-
-
-

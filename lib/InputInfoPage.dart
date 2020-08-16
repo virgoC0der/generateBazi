@@ -24,17 +24,17 @@ class _inputInfoPageState extends State<InputInfoPage> {
   Response response;
   var _nameColor;
   var params = {
-    'name' : '',
-    'city' : '北京',
-    'year' : _date.year.toString(),
-    'month' : _date.month.toString(),
-    'day' : _date.day.toString(),
-    'hour' : _time.hour.toString(),
-    'minute' : _time.minute.toString(),
-    'sex' : '1',
-    'islunar' : '0',
-    'istaiyang' : '0',
-    'appkey' : '0d015ee8df7458ae4bf2fb9b75becae4'
+    'name': '',
+    'city': '北京',
+    'year': _date.year.toString(),
+    'month': _date.month.toString(),
+    'day': _date.day.toString(),
+    'hour': _time.hour.toString(),
+    'minute': _time.minute.toString(),
+    'sex': '1',
+    'islunar': '0',
+    'istaiyang': '0',
+    'appkey': '0d015ee8df7458ae4bf2fb9b75becae4'
   };
 
   @override
@@ -267,7 +267,9 @@ class _inputInfoPageState extends State<InputInfoPage> {
                   child: new GestureDetector(
                     onTap: () {
                       _focusNodeName.unfocus();
-                      Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => ResultPage(params)));
+                      Navigator.of(context).push(new MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              ResultPage(params)));
                     },
                     child: new Material(
                       borderRadius: BorderRadius.circular(20.0),
