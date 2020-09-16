@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: '八卦排盘',
 //      home: InputInfoPage(),
+
       home: InputInfoPage(),
     );
   }
