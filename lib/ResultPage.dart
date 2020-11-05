@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 
+const kQianzaoLength = 4;
+
 class ResultPage extends StatefulWidget {
   final data;
 
@@ -22,6 +24,7 @@ class _ResultPageState extends State<ResultPage> {
   var time;
   var lunarBirthday;
   var gapTime;
+  var qianzao;
 
   getResult(params) async {
     Dio dio = new Dio();
@@ -63,16 +66,31 @@ class _ResultPageState extends State<ResultPage> {
     });
   }
 
+  String makeQianzao() {
+    var result = "";
+    for(int i = 0; i < kQianzaoLength; i++) {
+      result += jsdata["qiankunzao"][0][i] + "      ";
+    }
+
+    print(result);
+    return result;
+  }
+
   @override
   void initState() {
     super.initState();
     getWidgetInfo(widget.data);
+    qianzao = makeQianzao();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: ListView(
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text("结果"),
+      ),
+      body: ListView(
         children: <Widget>[
           ListTile(
             title: Text("姓名：" + name),
@@ -88,8 +106,8 @@ class _ResultPageState extends State<ResultPage> {
                 "出生于" + jsdata["jieqiprev"]["jieqiname"] + "后" + gapTime + "天"),
           ),
           ListTile(
-            title: Text("乾造：" ),
-          )
+            title: Text("乾造：" + qianzao),
+          ),
         ],
       ),
     );

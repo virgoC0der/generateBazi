@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: '八卦排盘',
-//      home: InputInfoPage(),
+//      home: LoginPage(),
 
       home: InputInfoPage(),
     );

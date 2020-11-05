@@ -1,3 +1,4 @@
+import 'package:bagua/ResultPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'SignupPage.dart';
@@ -192,6 +193,10 @@ class _LoginPageState extends State<LoginPage> {
         if (_formKey.currentState.validate()) {
           _formKey.currentState.save();
         }
+
+        Navigator.of(context).push(new MaterialPageRoute(
+            builder: (BuildContext context) =>
+            InputInfoPage()));
       },
       child: new Container(
         margin: EdgeInsets.only(left: 20, right: 20),
