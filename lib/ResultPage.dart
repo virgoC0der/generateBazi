@@ -127,6 +127,7 @@ class _ResultPageState extends State<ResultPage> {
         title: Text("结果"),
       ),
       body: ListView(
+        padding: EdgeInsets.only(top: 7),
         children: <Widget>[
           Container(
             child: Text("姓名：" + name, style: TextStyle(fontSize: 17)),
